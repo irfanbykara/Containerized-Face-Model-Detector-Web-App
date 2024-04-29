@@ -1,0 +1,65 @@
+   {% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+    <!-- Portfolio Section Begin -->
+    <section class="portfolio spad">
+        <div class="container">
+            {% include 'messages.html' %}
+                        <form method="POST" action="{% url 'home' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+<div class="mb-3">
+  <label for="formFile" class="form-label" style="color:white">Descarga una imagen (Solo jpeg y png.)</label>
+
+<input class="form-control" type="file" name="images" id="formFile" accept="image/jpeg, image/png,image/jpg" required>
+    <br>
+
+    <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                    </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12" style="justify-content:center">
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="selection" id="flexRadioDefault1" value="normal">
+  <label class="form-check-label" for="flexRadioDefault1" style="color:white">
+    Normal
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="selection" id="flexRadioDefault2" value="extreme" checked>
+  <label class="form-check-label" for="flexRadioDefault2" style="color:white">
+    Extreme
+  </label>
+</div>
+<button type="submit" class="primary-btn" style="color:black">Gönder</button>
+    </div>
+    </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                </div>
+</div>
+
+
+            </form>
+
+
+{% if instance %}
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="row portfolio__gallery">
+            <div class="col-lg-4 col-md-6 col-sm-6 mix branding text-center">
+                <div class="portfolio__item">
+                    <img src="{{ instance.image.url }}" alt="{{ instance.name }}" class="img-fluid">
+                    <p>Name: {{ instance.name }}</p>
+                    <p>Predicted Label: {{ instance.predicted_label }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+        </div>
+    </section>
+
+
+   {% endblock %}
