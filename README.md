@@ -45,3 +45,7 @@ Este repositorio contiene un proyecto Django. Siga los pasos a continuación par
 3. Abra su navegador web y navegue a `http://localhost:8000` para ver la aplicación en funcionamiento.
 
 ¡Disfrute explorando el proyecto!
+
+
+https://github.com/irfanbykara/Containerized-Face-Model-Detector-Web-App/assets/63783207/1a475e38-9ab1-498c-beb0-ec87fcf5298e
+
