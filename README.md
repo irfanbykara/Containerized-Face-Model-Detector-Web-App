@@ -1,5 +1,9 @@
 Este es un demo de una aplicación para decidir si una imagen podría ser el de un modelo o no. Para ello, estamos utilizando la arquitectura efficient-net-b4, que está entrenada en un conjunto de datos personalizado durante menos de 50 épocas. Proporciona una buena precisión en un conjunto de datos en la naturaleza. Hay dos puntos de control del modelo para que los usuarios los prueben. Uno es extremadamente exigente, que solo considera a los mejores candidatos como modelos. 
 Eso es una aplicacion de django con postgresql en backend. 
+Se puede probar la aplicacion directamente en googlecolab tambien sin hacer nada de programacion.
+
+[Open in Colab]([LINK_TO_YOUR_COLAB_NOTEBOOK](https://colab.research.google.com/drive/1108U-ThcWEJ3fQLDd3IAc17RB3Qtcuj7))
+
 
 # Instrucciones para Ejecutar el Proyecto
 
