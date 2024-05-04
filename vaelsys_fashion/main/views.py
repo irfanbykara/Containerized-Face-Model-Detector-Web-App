@@ -11,7 +11,7 @@ from torchvision import transforms, datasets
 from sklearn.model_selection import train_test_split
 import os
 from django.contrib import messages #import messages
-
+import numpy as np
 from .models import PredictedImage
 import tempfile
 
@@ -80,11 +80,16 @@ def home(request):
         model.to("cpu")
         
         try:
-            detected_face = DeepFace.extract_faces(img_path=img_path, detector_backend="DeepFace")
+            detected_face = DeepFace.extract_faces(img_path=img_path, )
             detected_face = detected_face[0]["face"]
-            # Convert the NumPy array to a PIL Image
-            detected_face = Image.fromarray(cv2.cvtColor(detected_face * 255, cv2.COLOR_RGB2BGR))
-        except:
+            detected_face_uint8 = (detected_face * 255).astype(np.uint8)
+
+            # Convert unsigned 8-bit integer array to image
+            detected_face_image = cv2.cvtColor(detected_face_uint8, cv2.COLOR_RGB2BGR)
+            detected_face_image = Image.fromarray(detected_face_image)
+
+        except Exception as e:
+            print(e)
             #print("This image has no face!")
             messages.warning(request, "Esta imagen no tiene cara!")
             return redirect("home")
@@ -100,20 +105,18 @@ def home(request):
 
         # If the checkpoint contains the model state dictionary directly
         model.load_state_dict(checkpoint)
-        # image = Image.open(detected_face).convert('RGB')
+        # image = Image.open(uploaded_image).convert('RGB')
 
         # Apply transformations
-        image = test_transform(detected_face)
+        image = test_transform(detected_face_image)
         model.eval()
         # Forward pass through the model
         with torch.no_grad():
             output = model(image.unsqueeze(0).to("cpu"))
-           # probs = torch.exp(output.data)
             _, predicted = torch.max(output.data, 1)
             predicted_label = predicted.item()
 
-
-        new_image_instance = PredictedImage(image=uploaded_image.temporary_file_path(),name=str(uploaded_image), predicted_label=predicted_label)
+        new_image_instance = PredictedImage(image=uploaded_image,name=str(uploaded_image), predicted_label=predicted_label)
         new_image_instance.save()
 
         context = {"instance":new_image_instance}

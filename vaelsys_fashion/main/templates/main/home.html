@@ -22,18 +22,18 @@
                             <div class="col-lg-4 col-md-6 col-sm-12" style="justify-content:center">
 
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="selection" id="flexRadioDefault1" value="normal">
+  <input class="form-check-input" type="radio" name="selection" id="flexRadioDefault1" value="normal" checked>
   <label class="form-check-label" for="flexRadioDefault1" style="color:white">
     Normal
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="selection" id="flexRadioDefault2" value="extreme" checked>
+  <input class="form-check-input" type="radio" name="selection" id="flexRadioDefault2" value="extreme" >
   <label class="form-check-label" for="flexRadioDefault2" style="color:white">
     Extreme
   </label>
 </div>
-<button type="submit" class="primary-btn" style="color:black">Gönder</button>
+<button type="submit" class="primary-btn" style="color:black">Sube</button>
     </div>
     </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
@@ -50,8 +50,15 @@
             <div class="col-lg-4 col-md-6 col-sm-6 mix branding text-center">
                 <div class="portfolio__item">
                     <img src="{{ instance.image.url }}" alt="{{ instance.name }}" class="img-fluid">
-                    <p>Name: {{ instance.name }}</p>
-                    <p>Predicted Label: {{ instance.predicted_label }}</p>
+                    <p>Nombre: {{ instance.name }}</p>
+                    <p>
+                        {% if instance.predicted_label == 0 %}
+                            No Modelo
+                        {% else %}
+                            Modelo
+                        {% endif %}
+
+                    </p>
                 </div>
             </div>
         </div>
