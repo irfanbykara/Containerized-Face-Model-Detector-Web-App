@@ -2,7 +2,7 @@ Este es un demo de una aplicación para decidir si una imagen podría ser el de 
 Eso es una aplicacion de django con postgresql en backend. 
 Se puede probar la aplicacion directamente en googlecolab tambien sin hacer nada de programacion.
 
-[Open in Colab]([LINK_TO_YOUR_COLAB_NOTEBOOK](https://colab.research.google.com/drive/1108U-ThcWEJ3fQLDd3IAc17RB3Qtcuj7))
+[Open in Colab](https://colab.research.google.com/drive/1108U-ThcWEJ3fQLDd3IAc17RB3Qtcuj7)
 
 
 # Instrucciones para Ejecutar el Proyecto
